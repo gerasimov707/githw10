@@ -2,21 +2,13 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Comparator<Person> comparator = new Comparator<Person>() {
-            @Override
-            public int compare(Person o1, Person o2) {
-                return o2.getSurname().length() - o1.getSurname().length();
+        Comparator<Person> comparator = (o1, o2) -> o2.getSurname().length() - o1.getSurname().length();
+        Comparator<Person> comparator1 = (o1, o2) -> {
+            int comp1 = o2.getSurname().length()-o1.getSurname().length();
+            if( comp1 ==0) {
+                return o2.getAge() - o1.getAge();
             }
-        };
-        Comparator<Person> comparator1 = new Comparator<Person>() {
-            @Override
-            public int compare(Person o1, Person o2) {
-                int comp1 = o2.getSurname().length()-o1.getSurname().length();
-                if( comp1 ==0) {
-                    return o2.getAge() - o1.getAge();
-                }
-                return comp1;
-            }
+            return comp1;
         };
         List<Person> people = new ArrayList<>();
         people.add(new Person("Anna", "iva", 51));
